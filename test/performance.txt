@@ -1,0 +1,176 @@
+Julia Version 0.6.0
+Commit 903644385b* (2017-06-19 13:05 UTC)
+Platform Info:
+  OS: Windows (x86_64-w64-mingw32)
+  CPU: AMD Athlon(tm) II X4 640 Processor
+  WORD_SIZE: 64
+  BLAS: libopenblas (USE64BITINT DYNAMIC_ARCH NO_AFFINITY Barcelona)
+  LAPACK: libopenblas64_
+  LIBM: libopenlibm
+  LLVM: libLLVM-3.9.1 (ORCJIT, amdfam10)
+
+Welcome to Nemo version 0.6.0
+
+Nemo comes with absolutely no warranty whatsoever
+
+Julia Version 0.6.0
+Commit 903644385b* (2017-06-19 13:05 UTC)
+Platform Info:
+  OS: Windows (x86_64-w64-mingw32)
+  CPU: AMD Athlon(tm) II X4 640 Processor
+  WORD_SIZE: 64
+  BLAS: libopenblas (USE64BITINT DYNAMIC_ARCH NO_AFFINITY Barcelona)
+  LAPACK: libopenblas64_
+  LIBM: libopenlibm
+  LLVM: libLLVM-3.9.1 (ORCJIT, amdfam10)
+
+TEST: L005101(80000)
+  0.686221 seconds (1.05 M allocations: 16.660 MiB, 9.63% gc time)
+
+TEST: I005101(80000)
+  0.731261 seconds (1.17 M allocations: 18.468 MiB)
+
+TEST: L002093(200)
+  0.758487 seconds (776.39 k allocations: 11.853 MiB)
+
+TEST: (for m in 1:20, n in 0:100 André(m, n) end)
+  0.101612 seconds (115.23 k allocations: 3.103 MiB)
+
+TEST: BellNumberList(1000)
+  0.633167 seconds (855.00 k allocations: 13.062 MiB)
+
+TEST: BellTriangle(100, [1 for _ in 1:100])
+  0.894710 seconds (1.21 M allocations: 25.007 MiB, 9.52% gc time)
+
+TEST: (for m in 1:10, n in 0:499 BernoulliInt(m, n) end)
+  1.256284 seconds (1.77 M allocations: 38.395 MiB, 6.53% gc time)
+
+TEST: (for m in 1:10 BernoulliIntList(m, 500) end)
+  1.300533 seconds (1.26 M allocations: 19.307 MiB, 6.70% gc time)
+
+TEST: (for n in 0:1000 Bernoulli(n) end)
+  1.214089 seconds (945.24 k allocations: 20.214 MiB)
+
+TEST: BernoulliList(1000)
+  0.730644 seconds (505.27 k allocations: 7.823 MiB)
+
+TEST: (for n in 0:1000 A027641(n) end)
+  0.006333 seconds (7.74 k allocations: 144.313 KiB)
+
+TEST: (for n in 0:10000 A195441(n) end)
+  0.777007 seconds (3.51 M allocations: 342.286 MiB, 17.59% gc time)
+
+TEST: B034017(10000)
+  1.937126 seconds (836.58 k allocations: 41.500 MiB, 0.93% gc time)
+
+TEST: ClausenNumberList(10000)
+  0.061605 seconds (52.46 k allocations: 1.135 MiB)
+
+TEST: (for n in 0:10000 ClausenNumber(n) end)
+  1.054293 seconds (1.85 M allocations: 148.662 MiB, 14.95% gc time)
+
+TEST: [A257993(n) for n in 1:10000]
+  0.059546 seconds (20.31 k allocations: 847.293 KiB)
+
+TEST: PrimePiList(10000)
+  0.042782 seconds (49.15 k allocations: 1.113 MiB)
+
+TEST: PartitionNumberList(10000)
+  0.269631 seconds (55.41 k allocations: 2.413 MiB)
+
+TEST: L000731(10000)
+  0.008633 seconds (19.64 k allocations: 470.161 KiB)
+
+TEST: RamanujanTauList(10000)
+  0.020326 seconds (19.64 k allocations: 470.177 KiB)
+
+TEST: T225478(100)
+  0.372494 seconds (75.03 k allocations: 3.651 MiB)
+
+TEST: T055883(100)
+  0.233405 seconds (41.81 k allocations: 1.820 MiB)
+
+TEST: (for n in 1:10000 FibonacciGeneralized(n, 1) end)
+  1.122438 seconds (6.30 M allocations: 288.687 MiB, 23.85% gc time)
+
+TEST: FibonacciGeneralizedList(10000, 1)
+  0.061478 seconds (23.67 k allocations: 589.181 KiB)
+
+TEST: L001783(1000)
+  0.911757 seconds (2.45 M allocations: 44.754 MiB, 26.84% gc time)
+
+TEST: [A055634(n) for n in 1:1000]
+  0.654024 seconds (2.37 M allocations: 42.221 MiB, 18.41% gc time)
+
+TEST: [A103131(n) for n in 1:1000]
+  0.550933 seconds (2.01 M allocations: 31.020 MiB, 25.96% gc time)
+
+TEST: (for n in 0:10000 Binomial(2n, n) end)
+  0.509408 seconds (10.00 k allocations: 156.266 KiB)
+
+TEST: (for n in -100:100, k in -100:100 Binomial(n, k) end)
+  0.016147 seconds (55.55 k allocations: 867.984 KiB)
+
+TEST: (for k in -10000:10000 Binomial(-5, k) end)
+  0.009722 seconds (40.00 k allocations: 624.969 KiB)
+
+TEST: (for n in 0:150 A000262(n) end)
+  0.096762 seconds (10.50 k allocations: 539.155 KiB)
+
+TEST: L000143(100000)
+  0.175741 seconds (215.09 k allocations: 5.409 MiB)
+
+TEST: L035016(100000)
+  0.176714 seconds (214.77 k allocations: 5.391 MiB)
+
+TEST: KolakoskiList(10000)
+  0.222489 seconds (53.48 k allocations: 3.309 MiB)
+
+TEST: [Divisors(n) for n in 1:10000]
+  0.446688 seconds (927.63 k allocations: 87.104 MiB, 25.83% gc time)
+
+TEST: [Radical(n)  for n in 1:10000]
+  0.228025 seconds (292.08 k allocations: 17.848 MiB, 14.07% gc time)
+
+TEST: T111062(1000)
+  1.926259 seconds (3.99 M allocations: 64.760 MiB, 10.30% gc time)
+
+TEST: T066325(1000)
+  2.186144 seconds (5.83 M allocations: 100.370 MiB, 31.67% gc time)
+
+TEST: T053120(1000)
+  0.290838 seconds (1.12 M allocations: 20.959 MiB)
+
+TEST: (for n in 1:10000 F!(n) end)
+  1.520073 seconds (10.00 k allocations: 156.250 KiB)
+
+TEST: (for n in 1:1000 A000407(n) end)
+  0.203399 seconds (997.77 k allocations: 15.225 MiB)
+
+TEST: (for n in 1:200, k in 1:200 RisingFactorial(n, k) end)
+  2.288450 seconds (4.43 M allocations: 67.596 MiB, 18.90% gc time)
+
+TEST: L286032(10000)
+  0.152422 seconds (34.48 k allocations: 867.246 KiB)
+
+TEST: L005411(500)
+  0.282115 seconds (251.50 k allocations: 3.857 MiB)
+
+TEST: StirlingSetTriangle(1000, 2)
+  1.884482 seconds (3.00 M allocations: 49.845 MiB, 9.70% gc time)
+
+TEST: LahTriangle(1000, 2)
+  2.096734 seconds (3.50 M allocations: 57.458 MiB, 11.00% gc time)
+
+TEST: (for n in 0:999 Swing(n) end)
+  0.033714 seconds (107.67 k allocations: 4.237 MiB)
+
+TEST: (for n in 0:999 A000984(n) end)
+  0.062899 seconds (209.76 k allocations: 7.296 MiB)
+
+TEST: (for n in 1:2000 IsZumkeller(n) end)
+  2.342201 seconds (3.10 M allocations: 138.755 MiB, 5.76% gc time)
+
+Julia version: 0.6.0
+2017-08-01T10:46:04.794
+Total test time: 50.657 seconds

@@ -1,0 +1,22 @@
+site_name:           MathIntSeq
+site_url:            http://olms.onl/julia/MathIntSeq/
+site_description:    Mathematical Integer Sequences
+site_author:         Peter Luschny
+theme:               material
+
+pages:
+- About:      about.md
+- Mathematical Integer Sequences: index.md
+- Modules:    modules.md
+- Notebooks:  notebook.md
+- Repository: repository.md
+- License:    license.md
+
+extra_css:
+- assets/Documenter.css
+
+extra_javascript:
+- assets/mathjaxhelper.js
+- https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML
+
+docs_dir: 'build'
