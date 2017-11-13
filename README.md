@@ -2,7 +2,7 @@
 
 Julia implementations of mathematical integer sequences.
 
-For Julia 0.6.0 on Unix, Mac and Win64.
+For Julia 0.6.1 on Linux, Mac and Win64.
 
 [![Build status](https://travis-ci.org/PeterLuschny/MathIntSeq.svg?branch=master)](https://travis-ci.org/PeterLuschny/MathIntSeq) [![Build status](https://ci.appveyor.com/api/projects/status/d60u86n44fc43awi?svg=true)](https://ci.appveyor.com/project/PeterLuschny/mathintseq)
 
