@@ -10,6 +10,7 @@
 # * The build can be easily customized by filtering source files.
 
 module MathIntSeqBuild
+export build_all
 
 gitdir = "https://github.com/OpenLibMathSeq/MathIntSeq/blob/master/src/modules/"
 srcdir = realpath(joinpath(dirname(@__FILE__)))
@@ -42,19 +43,19 @@ function sortnames()
 
     dict = Dict{Int64,Array{String}}()
 
-    for l in eachline(index, chomp=false)
+    for l in eachline(index, chomp = false)
 
         i = 0; c = 2
-        if ismatch(r"^[ABLMGT][0-9]{6}[m!,],$", l) c = 1 end
-        if ismatch(r"^[ABLMGT][0-9]{6},$", l) c = 0 end
-        if ismatch(r"^is[ABLMGT][0-9]{6},$", l) i = 2; c = 0 end
+        if ismatch(r"^[ABCLMGT][0-9]{6}[m!,],$", l) c = 1 end
+        if ismatch(r"^[ABCLMGT][0-9]{6},$", l) c = 0 end
+        if ismatch(r"^is[ABCLMGT][0-9]{6},$", l) i = 2; c = 0 end
 
         c == 2 && (print(sindex, l); continue)
 
         Anum = l[1:end - 2]
         N = parse(Anum[2 + i:end - c])
 
-        if ! haskey(dict, N)
+        if !haskey(dict, N)
             dict[N] = [Anum]
         else
             push!(dict[N], Anum)
@@ -81,7 +82,7 @@ end
 # Nota bene: we make use of the convention that an MathIntSeq module
 # is closed by "end # module" (and not merely by "end")!
 # Also note that we do not support yet multiline comments (#= =#)
-function build_seq()
+function build_seq(docdefs)
 
     tmp = open("_TEMP.jl", "w")
     exp = open("_EXPORT.jl", "w")
@@ -94,10 +95,10 @@ function build_seq()
         println("# +++ ", filename)
         println(tmp, "# +++ ", filename, " +++")
         doc = save1 = save2 = false
-        for l in eachline(mod, chomp=false)
+        for l in eachline(mod, chomp = false)
             if save1 || save2
                 save1 && println(tmp, "doc\"\"\"")
-                print(tmp, "* ", l)
+                docdefs && print(tmp, "* ", l)
                 println(tmp, "\"\"\"")
                 print(tmp, l)
                 save1 = save2 = false
@@ -108,17 +109,16 @@ function build_seq()
             startswith(n, '#') && continue
             startswith(n, "using") && continue
             if startswith(n, "export")
-                print(exp, n); continue; end
+            print(exp, n); continue; end
             startswith(n, "module") && continue
             startswith(n, "end # module") && break
             if startswith(n, "doc\"\"\"°\"\"\"")
-                save1 = true; continue; end
+            save1 = true; continue; end
             if startswith(n, "\"\"\"")
-                save2 = true; continue; end
-            #print(l)
+            save2 = true; continue; end
             print(tmp, l)
         end
-	    close(mod)
+        	    close(mod)
     end
 
     flush(exp)
@@ -129,7 +129,7 @@ function build_seq()
     sor = open("_INDEX.jl", "w")
 
     s = ""
-    for l in eachline(exp, chomp=false)
+    for l in eachline(exp, chomp = false)
         n = lstrip(l)
         if startswith(n, "export")
             n = n[7:end]
@@ -162,11 +162,10 @@ function build_seq()
     println(olm, "module MathIntSeq")
     println(olm, "using Memoize, Combinatorics, Requests, URIParser, Nemo, OffsetArrays")
 
-    for l in eachline(sor, chomp=false) print(olm, l) end
-    println(olm, "const PKGDIR = dirname(realpath(joinpath(dirname(@__FILE__))))")
+    for l in eachline(sor, chomp = false) print(olm, l) end
     println("ROOTDIR name:")
     println(dirname(realpath(joinpath(dirname(@__FILE__)))))
-    for l in eachline(tmp, chomp=false) print(olm, l) end
+    for l in eachline(tmp, chomp = false) print(olm, l) end
     print(olm, "end")
 
     close(sor)
@@ -189,7 +188,7 @@ function build_test()
     path = joinpath(moddir, "SeqTests.jl")
     i = open(path, "r")
     buff = Array{String,1}()
-    for l in eachline(i, chomp=false)
+    for l in eachline(i, chomp = false)
         n = lstrip(l)
         startswith(n, '#') && continue
         startswith(n, "module") && continue
@@ -211,12 +210,10 @@ function build_test()
         path = joinpath(moddir, filename)
         i = open(path, "r")
         inside = false
-        #msg = "# +++ ", filename, " +++"
-        #println(msg)
         println(o, "# +++ ", filename, " +++")
 
         buff = Array{String,1}()
-        for l in eachline(i, chomp=false)
+        for l in eachline(i, chomp = false)
             n = lstrip(l)
             startswith(n, '#') && continue
             b = startswith(n, "function test()")
@@ -233,10 +230,9 @@ function build_test()
         while j > 0 && buff[j] == "" j -= 1 end
 
         for k in 1:j - 1
-            #print(buff[k])
             print(o, buff[k])
         end
-	    close(i)
+        	    close(i)
     end
     print(o, "end # module")
     close(o)
@@ -251,8 +247,7 @@ function build_perf()
     println(o, "module perftests")
     println(o, "using Nemo, MathIntSeq")
 
-    # println(o, "versioninfo(true)")
-    println(o, "versioninfo()")
+    println(o, "versioninfo()") # "versioninfo(true)"
     println(o, "start = now()")
 
     seq_modules = filter!(r"\.jl$", readdir(moddir))
@@ -261,13 +256,11 @@ function build_perf()
         path = joinpath(moddir, filename)
         i = open(path, "r")
         inside = false
-        #msg = "# +++ " * filename * " +++"
-        #println(o, msg)
         println(o, "# +++ ", filename, " +++")
 
         buff = Array{String,1}()
         s = ""
-        for l in eachline(i, chomp=false)
+        for l in eachline(i, chomp = false)
             n = lstrip(l)
             b = startswith(n, "function perf()")
             if b inside = true; continue end
@@ -287,10 +280,9 @@ function build_perf()
         while j > 0 && buff[j] == "" j -= 1 end
 
         for k in 1:j - 1
-            #print(buff[k])
             print(o, buff[k])
         end
-	    close(i)
+        	    close(i)
     end
 
     println(o, "stop = now()")
@@ -307,20 +299,10 @@ function make_index()
     path = joinpath(docsrcdir, "index.md")
     ind = open(path, "w")
     tind = open("S_INDEX.jl", "r")
-
-    println(ind, "Prefixes of a sequence number referring to the OEIS:");
-    println(ind, "* A: Single term: A[n]");
-    println(ind, "* B: Bound: all 0 ≤ A[n] ≤ bound.");
-    println(ind, "* C: Coroutine (channel) generating A.");
-    println(ind, "* L: List: initial segment of A of length n.");
-    println(ind, "* M: Matrix of a triangular array with n rows.");
-    println(ind, "* T: Triangular array with n rows.");
-    println(ind, "");
-    println(ind, "&rarr; _Sequence names are linked to the source._")
     println(ind, "```@docs")
 
     first = true
-    for l in eachline(tind, chomp=false)
+    for l in eachline(tind, chomp = false)
         first && (first = false; continue)
         l = replace(l, r"[,]", "")
         print(ind, l)
@@ -346,8 +328,8 @@ function get_modules()
     close(mod)
 end
 
-function main()
-    build_seq()
+function build_all(docdefs = false)
+    build_seq(docdefs)
     build_test()
     build_perf()
     make_index()
@@ -358,6 +340,6 @@ function main()
     rm("S_INDEX.jl")
 end
 
-main()
+#build_all()
 
 end # module

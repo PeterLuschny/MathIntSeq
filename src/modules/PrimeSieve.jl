@@ -2,7 +2,7 @@
 # License is MIT: http://julialang.org/license
 
 module PrimeSieve
-export Primes
+export Primes, primesmask
 
 # Primes generating functions
 
@@ -20,9 +20,9 @@ end
     return 30d + wheel_primes[r + 1]
 end
 
-doc"""
-Internal function.
-"""
+#doc"""
+#Internal function.
+#"""
 function mask(limit::Int)
     limit < 7 && throw(ArgumentError("The condition limit ≥ 7 must be met."))
     n = wheel_index(limit)
@@ -43,9 +43,9 @@ function mask(limit::Int)
     return sieve
 end
 
-doc"""
-Internal function.
-"""
+#doc"""
+#Internal function.
+#"""
 function mask(lo::Int, hi::Int)
     7 ≤ lo ≤ hi || throw(ArgumentError("The condition 7 ≤ lo ≤ hi must be met."))
     lo == 7 && return mask(hi)
@@ -109,12 +109,12 @@ function Primes(lo::Int, hi::Int)
     lo ≤ 5 ≤ hi && push!(list, 5)
     hi < 7 && return list
     lo = max(2, lo)
-    sizehint!(list, 5 + floor(Int, hi / (log(hi) - 1.12) - lo / (log(lo) - 1.12 * (lo > 7)))) 
+    sizehint!(list, 5 + floor(Int, hi / (log(hi) - 1.12) - lo / (log(lo) - 1.12 * (lo > 7))))
     # http://projecteuclid.org/euclid.rmjm/1181070157
     sieve = mask(max(7, lo), hi)
     lwi = wheel_index(lo - 1)
     # don't use eachindex here
-    @inbounds for i = 1:length(sieve)   
+    @inbounds for i = 1:length(sieve)
         sieve[i] && push!(list, wheel_prime(i + lwi))
     end
     return list

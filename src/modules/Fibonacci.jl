@@ -13,7 +13,7 @@ export L015442, L015443, L015445
 
 doc"""
 Return the generalized Fibonacci numbers which are defined recursively
-``F(n,k) = F(n-1,k) + kF(n-2,k), F(0,k) = 0, F(1,k) = 1``.
+``$F(n,k) = F(n-1,k) + kF(n-2,k), F(0,k) = 0, F(1,k) = 1.$``
 """
 function FibonacciGeneralized(n::Int, k::Int)
     F = BigInt[1 k; 1 0]

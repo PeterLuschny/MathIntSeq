@@ -65,7 +65,7 @@ doc"""
 Throws an ArgumentError if A is not a SeqArray.
 """
 function AssertSeqArray(A)
-    if ! IsSeqArray(A)
+    if !IsSeqArray(A)
         throw(ArgumentError(string(A) * " is not a SeqArray."))
     end
 end
@@ -95,7 +95,7 @@ end
 
 doc"""
 Return a iterator listing the values satisfying the predicate isA for arguments
-in ``0 ≤ n ≤ bound``.
+in ``0 ≤ n ≤ bound .``
 """
 function IterateUpTo(bound, isA)
     (i for i in 0:bound if isA(i))
@@ -125,7 +125,7 @@ isA for ``a < n ≤ b``. This supports convenient partitioning of intervals.
 
 julia> FindInInterval(7, 13, IsPrime)
 [11, 13]
-julia> FindInInterval(13, 23, IsPrime)
+FindInInterval(13, 23, IsPrime)
 [17, 19, 23]
 """
 function FindInInterval(a, b, isA::Function)
@@ -283,11 +283,11 @@ end
 doc"""
 Print the SeqArray with or without typeinfo.
 """
-function SeqPrint(A, typeinfo=false)
+function SeqPrint(A, typeinfo = false)
     if typeinfo
         println(A)
     else
-        Base.showarray(STDOUT, A, false; header=false)
+        Base.showarray(STDOUT, A, false; header = false)
     end
 end
 
@@ -302,7 +302,7 @@ function Row(T, n::Int)
 
     t = TriangularNumber(n + 1)
     s < t && error("This row is not in the matrix.")
-    SeqArray([T[k] for k in t-n-1:t-1])
+    SeqArray([T[k] for k in t - n - 1:t - 1])
 end
 
 doc"""
@@ -317,7 +317,7 @@ julia> Show(T225478(6))
  3465   8784   7136  2304   256
 65835 180756 170720 72320 14080 1024
 """
-function Show(T, separator=' ')
+function Show(T, separator = ' ')
     AssertSeqArray(T)
     n = SeqSize(T)
     n == 0 && return
@@ -337,7 +337,7 @@ end
 doc"""
 Display the row n of a lower triangular matrix (0 ≤ n).
 """
-function Show(T, n::Int, separator=' ')
+function Show(T, n::Int, separator = ' ')
     R = Row(T, n)
     for r in R print(r, separator) end
     println()
@@ -427,7 +427,7 @@ ShowAsMatrix(T) = println(Δto□(T))
 doc"""
 Return the row sums of a triangle, if "alternate=true" the alternating row sums.
 """
-function RowSums(T, alternate=false)
+function RowSums(T, alternate = false)
     AssertSeqArray(T)
     n = SeqSize(T)
     n == 0 && return T
@@ -458,10 +458,10 @@ function SeqName(fun)
         aname = replace(aname, X, 'A')
     end
 
-    if ! ismatch(r"^A[0-9]{6}$", aname)
+    if !ismatch(r"^A[0-9]{6}$", aname)
         fullname = split(aname, ".")
         aname = String(fullname[2])
-        if ! ismatch(r"^A[0-9]{6}$", aname)
+        if !ismatch(r"^A[0-9]{6}$", aname)
             warn("Not a valid A-name!")
             return
         end
@@ -494,13 +494,13 @@ Returns an integer which is the highest index in `b` for the value `a`.
 Whenever `a` is not a member of `b` it returns -1.
 
 julia> L = List(10, IsPrime)
-julia> IndexIn(13, L)
+IndexIn(13, L)
 5
 """
 function IndexIn(a, b::AbstractArray)
     bdict = Dict(zip(b, 0:length(linearindices(b))))
     get(bdict, fmpz(a), -1)
- end
+end
 
 doc"""
 Return the first element of the SeqArray A if A is not empty, 0 otherwise.
@@ -518,7 +518,7 @@ Trick described by David Hilbert in a 1924 lecture "Über das Unendliche".
 HilbertHotel(guest, hotel) = prepend!(hotel, guest)
 
 doc"""
-Return the sqrt of n or throw an ArgumentError if n is not a square.
+Return the sqrt of ``n`` or throw an ArgumentError if ``n`` is not a square.
 """
 function AssertSquare(n)
     dim = isqrt(n)
@@ -639,7 +639,7 @@ julia> First(IsPrime)
 """
 function First(isA::Function)
     n = 0
-    while ! isA(n)
+    while !isA(n)
         n += 1
     end
     n
@@ -668,7 +668,7 @@ end
 
 doc"""
 Return least ``k > n ≥ 0`` such that isA(k) = true. NOTE: It is assumed that
-such a ``k`` exists! (If not the function runs forever.)
+such a ``k`` exists! (If not, the function will run forever.)
 
 julia> Next(7, IsPrime)
 11
@@ -745,13 +745,13 @@ function demo()
     SeqPrint(seq)
     SeqShow(seq)
 
-    G() = Channel(csize=2) do c
+    G() = Channel(csize = 2) do c
         for n in 0:1 put!(c, n) end
         n = 2
         while true
-            IsPrime(n) && put!(c, fmpz(n))
-            n += 1
-        end
+        IsPrime(n) && put!(c, fmpz(n))
+        n += 1
+    end
     end
 
     seq = SeqArray(4, G())

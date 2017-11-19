@@ -24,8 +24,7 @@ export B243655, B244779, B244780, B244819, B243168, B244291, B007522
 doc"""
 Return integers that are represented by the binary quadratic form
 ``a x^2 + b xy + c y^2`` over Z. Parameter 'subset' is in {"positive", "primitively",
-"prime"}. Not to be used as a 'public' function because it is only partially
-implemented.
+"prime"}. Use it only as a 'private' function.
 """
 function binaryQF(a::Int, b::Int, c::Int, bound = 100::Int, subset = "positive", verbose = false)
 
@@ -296,7 +295,7 @@ end
 end # binary_QF
 
 doc"""
-Return positive numbers of the form ``n = x^2-3y^2``, discriminant 12.
+Return positive numbers of the form ``n = x^2-3y^2`` of discriminant 12.
 """
 B084916(bound::Int) = binaryQF(1, 0, -3, bound)
 
@@ -328,7 +327,7 @@ B002476(bound::Int) = binaryQF(1, 1, -2, bound, "prime")
 
 doc"""
 Return positive numbers of the form ``x^2 - 2y^2`` with integers ``x, y``
-(discriminant 8).
+(discriminant is 8).
 """
 B035251(bound::Int) = binaryQF(1, 0, -2, bound)
 

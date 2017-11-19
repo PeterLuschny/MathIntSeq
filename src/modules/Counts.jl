@@ -14,6 +14,7 @@ Return a list of composite numbers of length len.
 (Numbers which have more than one prime divisor.)
 
 julia> L002808(8)
+[4, 6, 8, 9, 10, 12, 14, 15]
 """
 L002808(len) = List(len, IsComposite)
 
@@ -21,6 +22,7 @@ doc"""
 Return a list of the number of composite numbers ``≤ n``.
 
 julia> L065855(8)
+[0, 0, 0, 0, 1, 1, 2, 2]
 """
 L065855(len) = CountList(len, IsComposite)
 
@@ -29,6 +31,7 @@ Return a list of squarefree numbers of length len.
 (Numbers which are not divisible by a square greater than 1.)
 
 julia> L005117(8)
+[1, 2, 3, 5, 6, 7, 10, 11]
 """
 L005117(len) = List(len, IsSquareFree)
 
@@ -36,6 +39,7 @@ doc"""
 Return a list of the number of squarefree numbers ``< n``.
 
 julia> L013928(8)
+[0, 1, 2, 3, 3, 4, 5, 6]
 """
 L013928(len) = CountList(len, IsSquareFree)
 
@@ -44,6 +48,7 @@ Return a list of powers of primes of length len.
 (Numbers of the form ``p^k`` where ``p`` is a prime and ``k ≥ 0``.)
 
 julia> L000961(8)
+[1, 2, 3, 4, 5, 7, 8, 9]
 """
 L000961(len) = List(len, IsPowerOfPrimes)
 
@@ -52,6 +57,7 @@ Return the number of powers of primes ``≤ n``. (Powers of primes are numbers
 of the form ``p^k`` where ``p`` is a prime and ``k ≥ 0``.)
 
 julia> L065515(8)
+[0, 1, 2, 3, 4, 5, 5, 6]
 """
 L065515(len) = CountList(len, IsPowerOfPrimes)
 
@@ -60,6 +66,7 @@ Return a list of prime powers of length len.
 (Numbers of the form ``p^k`` where ``p`` is a prime and ``k ≥ 1``.)
 
 julia> L246655(8)
+[2, 3, 4, 5, 7, 8, 9, 11]
 """
 L246655(len) = List(len, IsPrimePower)
 
@@ -67,6 +74,7 @@ doc"""
 Return a list of the number of prime powers ``≤ n`` with exponents ``k ≥ 1``.
 
 julia> L025528(8)
+[0, 0, 1, 2, 3, 4, 4, 5]
 """
 L025528(len) = CountList(len, IsPrimePower)
 
@@ -75,6 +83,7 @@ Return a list of perfect powers of length len.
 (Numbers of the form ``p^k`` where ``p`` is a prime and ``k ≥ 2``.
 
 julia> L246547(8)
+[4, 8, 9, 16, 25, 27, 32, 49]
 """
 L246547(len) = List(len, IsPerfectPower)
 
@@ -82,6 +91,7 @@ doc"""
 Return a list of the number of prime powers ``≤ n`` with exponents ``k ≥ 2``.
 
 julia> L069637(8)
+[0, 0, 0, 0, 1, 1, 1, 1]
 """
 L069637(len) = CountList(len, IsPerfectPower)
 
@@ -103,19 +113,19 @@ A007917(n::Int) = Previous(n, IsPrime)
 
 doc"""
 Return the largest prime in ``Z`` (the ring of all integers)
-less than ``n`` for ``n ≥ 0``.
+less than ``n`` for ``n ≥ 0``. Cf. A007917.
 """
 PreviousPrime(n::Int) = n ∈ [0, 1, 2] ? -2 : Previous(n - 1, IsPrime)
 
 doc"""
-Return least prime ``> n``. (The "next_prime" function of Mathematica, Maple,
-Magma and SageMath.)
+Return least prime ``> n``. The "next_prime" function of Mathematica, Maple,
+Magma and SageMath. Cf. A151800.
 """
 NextPrime(n::Int) = Next(n, IsPrime)
 
 doc"""
-Return least prime ``> n``. (The "next_prime" function of Mathematica, Maple,
-Magma and SageMath.)
+Return least prime ``> n``. The "next_prime" function of Mathematica, Maple,
+Magma and SageMath.
 """
 A151800(n::Int) = Next(n, IsPrime)
 

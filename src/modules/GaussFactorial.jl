@@ -68,7 +68,7 @@ A066570(n::Int) = div(GaußFactorial(n, 1), GaußFactorial(n, n))
 doc"""
 The product of the residues in ``[1, n]`` relatively prime to n taken modulo n,
 where the absolute representation of the integers modulo n is used.
-A160377(n::Int) = mod(GaußFactorial(n, n), n)
+A160377(n) = mod(GaußFactorial(n, n), n).
 """
 function A160377(n::Int)
     r = 1
@@ -87,7 +87,7 @@ doc"""
 Return the product of the residues in ``[1,n]`` which are prime to n taken
 modulo n, where the symmetric (or minimal) representation of the integers
 modulo n is used.
-A103131(n::Int) = mods(GaußFactorial(n, n), n).
+A103131(n) = mods(GaußFactorial(n, n), n).
 """
 function A103131(n::Int)
     r = 1

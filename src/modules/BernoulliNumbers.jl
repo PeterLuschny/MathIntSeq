@@ -153,7 +153,7 @@ function A027641(n::Int)
     IsOdd(n) && (n == 1 ? (return ZZ(-1)) : return ZZ(0))
     n == 0 && return ZZ(1)
     denom = ^(ZZ(4), n) - ^(ZZ(2), n)
-    num(BernoulliInt(2, n) // denom)
+    Nemo.num(BernoulliInt(2, n) // denom)
 end
 
 # We could also define the denominator of the Bernoulli number as
@@ -223,7 +223,7 @@ function demo()
         println(BernoulliIntList(3, len))
     end
     for n in 0:20
-        println(fmpq(num(Bernoulli(n)), den(Bernoulli(n))))
+        println(fmpq(Nemo.num(Bernoulli(n)), Nemo.den(Bernoulli(n))))
     end
 end
 

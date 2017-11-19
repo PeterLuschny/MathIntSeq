@@ -2,14 +2,14 @@
 
 Julia implementations of mathematical integer sequences.
 
-For Julia 0.6.1 on Linux, Mac and Win64.
+For Julia 0.6.1 on Linux, Mac OS X and Win64.
 
 [![Build status](https://travis-ci.org/PeterLuschny/MathIntSeq.svg?branch=master)](https://travis-ci.org/PeterLuschny/MathIntSeq) [![Build status](https://ci.appveyor.com/api/projects/status/d60u86n44fc43awi?svg=true)](https://ci.appveyor.com/project/PeterLuschny/mathintseq)
 
 
 First steps and usage can be seen in this
 
-- [Example notebook](http://olms.onl/julia/MathIntSeq/nbs/SeqNotebook.html).
+- [Example notebook](http://olms.onl/julia/MathIntSeq/notebook/SeqNotebook.html).
 
 For a quick first view install MathIntSeq and run the
 

@@ -15,9 +15,7 @@ export L217924, L005773, L108624, L005425, L000085, L001464, L003723, L006229
 doc"""
 By the theorem of Favard an orthogonal polynomial systems  ``p_{n}(x)`` is a
 sequence of real polynomials with deg``(p_{n}(x)) = n`` for all ``n`` if and only if
-```math
-p_{n+1}(x) = (x - s_n)p_n(x) - t_n p_{n-1}(x)
-```
+``$ p_{n+1}(x) = (x - s_n)p_n(x) - t_n p_{n-1}(x) $``
 with ``p_{0}(x)=1`` for some pair of seq's ``s_k`` and ``t_k``. Return the
 coefficients of the polynomials as a triangular array with dim rows.
 """
@@ -32,8 +30,8 @@ function OrthoPoly(dim::Int, s::Function, t::Function)
         hi += row
         j = lo - row
 
-        for k in lo:hi-1
-            T[k] = (j<olo?0:T[j])+s(k-1-lo)*T[j+1]+(j+2<lo?t(k-lo)*T[j+2]:0)
+        for k in lo:hi - 1
+            T[k] = (j < olo ? 0 : T[j]) + s(k - 1 - lo) * T[j + 1] + (j + 2 < lo ? t(k - lo) * T[j + 2] : 0)
             j += 1
         end
         T[hi] = 1
@@ -50,9 +48,9 @@ function InvOrthoPoly(dim::Int, s::Function, t::Function)
     T = zeros(ZZ, dim, dim)
     #T = SeqMatrix(dim)
     for n in 1:dim T[n, n] = 1 end
-    for n in 1:dim-1
-        for k in 1:n+1
-            T[n + 1, k] = (k>1?T[n,k-1]:0)-s(n-1)*T[n,k]-(n>1?t(n-1)*T[n-1,k]:0)
+    for n in 1:dim - 1
+        for k in 1:n + 1
+            T[n + 1, k] = (k > 1 ? T[n,k - 1] : 0) - s(n - 1) * T[n,k] - (n > 1 ? t(n - 1) * T[n - 1,k] : 0)
         end
     end
     # TODO eliminate □toT.
@@ -76,7 +74,7 @@ without singletons (A000296).
 T216916(dim::Int) = OrthoPoly(dim, n -> n + 2, n -> n + 2)
 
 doc"""
-Return the triangle T(n,k) of tangent numbers, coefficient of ``x^n/n!``
+Return the triangle ``T(n,k)`` of tangent numbers, coefficient of ``x^n/n!``
 in the expansion of ``(\tan x)^k/k!``.
 """
 T059419(dim::Int) = OrthoPoly(dim, n -> 0, n -> (n + 1) * (n + 2))
@@ -210,7 +208,7 @@ function T053120(len)
     T = SeqTriangle(len)
     R, x = PolynomialRing(ZZ, "x")
     m = 0
-    for n in 0:len-1
+    for n in 0:len - 1
         f = chebyshev_t(n, x)
         for k in 0:n
             T[m] = coeff(f, k)
@@ -227,7 +225,7 @@ function T053117(len)
     T = SeqTriangle(len)
     R, x = PolynomialRing(ZZ, "x")
     m = 0
-    for n in 0:len-1
+    for n in 0:len - 1
         f = chebyshev_u(n, x)
         for k in 0:n
             T[m] = coeff(f, k)

@@ -38,18 +38,18 @@ doc"""
 Return the Stirling set numbers (a.k.a. Stirling numbers of 2nd kind)
 of order ``m``. Case ``m = 1`` is the classical case.
 """
-StirlingSet(n::Int, k::Int, m=1) = StirlingLah(n, k, (n, k) -> fmpz(k^m))
+StirlingSet(n::Int, k::Int, m = 1) = StirlingLah(n, k, (n, k) -> fmpz(k^m))
 
 doc"""
 Return the Stirling cycle numbers (a.k.a. unsigned Stirling numbers of 1st kind)
 of order ``m``. Case ``m = 1`` is the classical case.
 """
-StirlingCycle(n::Int, k::Int, m=1) = StirlingLah(n, k, (n, k) -> fmpz((n - 1)^m))
+StirlingCycle(n::Int, k::Int, m = 1) = StirlingLah(n, k, (n, k) -> fmpz((n - 1)^m))
 
 doc"""
 Return the Lah numbers of order ``m``. Case ``m=1`` is the classical case.
 """
-Lah(n::Int, k::Int, m=1) = StirlingLah(n, k, (n, k) -> k^m + fmpz((n - 1)^m))
+Lah(n::Int, k::Int, m = 1) = StirlingLah(n, k, (n, k) -> k^m + fmpz((n - 1)^m))
 
 doc"""
 Compute the generalized Stirling-Lah square matrix of dimension dim and weight
@@ -58,9 +58,9 @@ function w.
 function StirlingLahMatrix(dim::Int, w::Function)
     M = SeqMatrix(dim)
 
-    for n in 0:dim-1
+    for n in 0:dim - 1
         M[n, n] = fmpz(1)
-        for k in 1:n-1
+        for k in 1:n - 1
             M[n, k] = w(n - 1, k - 1) * M[n - 1, k] + M[n - 1, k - 1]
         end
     end
@@ -78,7 +78,7 @@ function StirlingLahTriangle(dim::Int, w::Function)
     for s in 2:dim
         l = h; h += s
         T[l] = 0; T[h - 1] = 1
-        for k in h-2:-1:l+1
+        for k in h - 2:-1:l + 1
             T[k] = w(s - 1, k - l) * T[k - s + 1] + T[k - s]
         end
     end
@@ -89,7 +89,7 @@ doc"""
 Return the first dim rows of the triangle of Stirling set numbers of order ``m``.
 Case ``m=1`` is the classical case.
 """
-StirlingSetTriangle(dim::Int, m=1) = StirlingLahTriangle(dim, (n, k) -> fmpz(k^m))
+StirlingSetTriangle(dim::Int, m = 1) = StirlingLahTriangle(dim, (n, k) -> fmpz(k^m))
 
 # doc"""
 # Pascal's triangle
@@ -118,7 +118,7 @@ doc"""
 Return the first dim rows of the triangle of Stirling cycle numbers of order ``m``.
 Case ``m=1`` is the classical case.
 """
-StirlingCycleTriangle(dim::Int, m=1) = StirlingLahTriangle(dim, (n, k) -> fmpz((n - 1)^m))
+StirlingCycleTriangle(dim::Int, m = 1) = StirlingLahTriangle(dim, (n, k) -> fmpz((n - 1)^m))
 
 doc"""
 Return the first dim rows of the triangle of Stirling cycle numbers.
@@ -141,7 +141,7 @@ doc"""
 Return the first dim rows of the triangle of Lah numbers of order ``m``.
 Case ``m=1`` is the classical case.
 """
-LahTriangle(dim::Int, m=1) = StirlingLahTriangle(dim, (n, k) -> k^m + fmpz((n - 1)^m))
+LahTriangle(dim::Int, m = 1) = StirlingLahTriangle(dim, (n, k) -> k^m + fmpz((n - 1)^m))
 
 doc"""
 Return the first dim rows of the triangle of the square of the Pascal triangle.

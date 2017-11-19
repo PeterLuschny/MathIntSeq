@@ -17,9 +17,7 @@ export L023020, L023021, L006922, L082556, L082557, L082558, L082559
 doc"""
 Compute the ``q``-expansion to length len of the Dedekind ``η`` function (without
 the leading factor ``q^{1/24}``) raised to the power ``r``, i.e.
-```math
-(q^{-1/24} η(q))^r = ∏_{k ≥ 1} (1 - q^k)^r.
-```
+``$ (q^{-1/24} η(q))^r = ∏_{k ≥ 1} (1 - q^k)^r. $``
 In particular, ``r = -1`` returns the generating function of the Partition
 function ``p(k)`` and ``r = 24`` gives the Ramanujan tau function ``τ(k)``.
 """

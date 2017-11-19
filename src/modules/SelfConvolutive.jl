@@ -16,7 +16,7 @@ export L111529, L111530, L111531, L111532, L111533, L146559, L167872
 # Integral representation of certain combinatorial recurrences
 # see also http://oeis.org/A172455
 
-Convolution(A, n) = sum(A[j] * A[n-j] for j in 0:n)
+Convolution(A, n) = sum(A[j] * A[n - j] for j in 0:n)
 
 doc"""
 An exactly solvable self-convolutive recurrence studied by R. J. Martin and
@@ -27,7 +27,7 @@ function SelfConvRec(len, a, b, c)
     len == 0 && return A
     A[0] = 1
 
-    for n in 1:len-1
+    for n in 1:len - 1
         A[n] = (a * (n + 1) + b) * A[n - 1] + c * Convolution(A, n - 1)
     end
     A

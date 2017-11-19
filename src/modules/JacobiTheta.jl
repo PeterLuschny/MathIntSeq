@@ -26,7 +26,7 @@ end
 
 doc"""
 Return the ``q``-expansion to length ``len`` of the Jacobi theta function raised
-to the power ``r``, i.e. ``ϑ(-q)^r`` where ``ϑ(q) = 1 + ∑_{k ≥ 1} q^{k^2}``.
+to the power ``r``, i.e. ``ϑ(-q)^r`` where ``$ϑ(q) = 1 + ∑_{k ≥ 1} q^{k^2} .$``
 """
 function JacobiTheta4Powers(len::Int, r::Int)
     len ≤ 0 && return fmpz[]

@@ -10,15 +10,15 @@ Generates the Kolakoski sequence which is the unique sequence
 over the alphabet ``{1, 2}`` starting with ``1`` and having the
 sequence of run lengths identical with itself.
 """
-C000002() = Channel(csize=10) do c
+C000002() = Channel(csize = 10) do c
     x = y = Int(-1)
 
     while true
-        put!(c, [2, 1][(x & 1) + 1])
-        f = y & ~(y + 1)
-        x = xor(x, f)
-        y = (y + 1) | (f & (x >> 1))
-    end
+    put!(c, [2, 1][(x & 1) + 1])
+    f = y & ~(y + 1)
+    x = xor(x, f)
+    y = (y + 1) | (f & (x >> 1))
+end
 end
 
 doc"""

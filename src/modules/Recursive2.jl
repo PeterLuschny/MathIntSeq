@@ -35,7 +35,8 @@ function Recurrence2(len::Int, f::Function, g::Function, a1=1, a2=1)
             A[n + 1] = f(n) * A[n] + g(n) * A[n - 1]
         end
     end
-SeqArray(A) end
+    SeqArray(A)
+end
 
 doc"""
 Return an array of length len of the Hankel transform of the Bessel numbers
@@ -85,7 +86,7 @@ L001046(len::Int) = Recurrence2(len, n -> div(n^2 - n, 2), n -> 1)
 doc"""
 Return the first len terms defined by
 ``a(n) = n! [x^n] (1 - √(Pi/2) \exp(-((x - 1)^2) / 2) (x - 1)
-( "erfi"((x - 1) / √(2)) + "erfi"(1 / √(2))))``.
+(erfi((x - 1) / √(2)) + erfi(1 / √(2))))``. For 'erfi' see MathWorld.
 """
 L286032(len::Int) = Recurrence2(len, n -> 1, n -> -n)
 

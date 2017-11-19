@@ -100,12 +100,10 @@ A convenient infix syntax for the falling factorial is n ↓ k.
 ↓(n, k) = FallingFactorial(n, k)
 
 doc"""
-Return the number of permutations of n letters, ``n! = ∏(1, n)``.
-'' is a shortcut for 'Factorial'.
+Return the number of permutations of n letters, ``n! = ∏(1, n)``,
+the factorial of ``n``.
 """
 F!(n::Int) = Nemo.fac(n)
-
-# function !(n) F!(n) end
 
 doc"""
 Return the factorial numbers.

@@ -7,9 +7,9 @@ using Requests, URIParser, SeqBase, Nemo
 export oeis_writebfile, oeis_trimdata, oeis_remote, oeis_local, oeis_isinstalled
 export oeis_notinstalled, oeis_path, oeis_search
 
-doc"""
-Directory of oeis data.
-"""
+#doc"""
+#Directory of oeis data.
+#"""
 MODDIR = realpath(joinpath(dirname(@__FILE__)))
 DATADIR = contains(MODDIR, Pkg.dir()) ? joinpath(dirname(MODDIR), "data") : joinpath(dirname(dirname(MODDIR)), "data")
 
@@ -20,7 +20,7 @@ oeis_path() = joinpath(DATADIR, "stripped")
 
 doc"""
 Indicates if the local copy of the OEIS data (the so-called
-'stripped' file) is installed (in MathIntSeq/src/data).
+'stripped' file) is installed (in MathIntSeq/data).
 """
 oeis_isinstalled() = isfile(oeis_path())
 
@@ -29,9 +29,9 @@ Indicates if the local copy of the OEIS data (the so-called
 'stripped' file) is not installed and warns.
 """
 function oeis_notinstalled()
-    if ! oeis_isinstalled()
+    if !oeis_isinstalled()
         warn("OEIS data not installed! Download stripped.gz from oeis.org")
-        warn("expand it and put it in the directory MathIntSeq/src/data.")
+        warn("expand it and put it in the directory MathIntSeq/data.")
         return true
     end
     return false
@@ -43,7 +43,7 @@ Write a so-called b-file for submission to the OEIS. The file is saved in the
 """
 function oeis_writebfile(anum, fun, offset::Int, len::Int)
 
-    if ! ismatch(r"^A[0-9]{6}$", anum)
+    if !ismatch(r"^A[0-9]{6}$", anum)
         warn("Not a valid A-number!")
         return
     end
@@ -60,7 +60,7 @@ end
 
 function oeis_writebfile(anum, list)
 
-    if ! ismatch(r"^A[0-9]{6}$", anum)
+    if !ismatch(r"^A[0-9]{6}$", anum)
         warn("Not a valid A-number!")
         return
     end
@@ -93,14 +93,14 @@ function oeis_trimdata(fun, offset::Int)
         n += 1
     end
     println(n, " terms")
-    end
+end
 
 doc"""
 Download the sequence with A-number 'anum' from the OEIS to a file in json format.
 The file is saved in the 'data' directory.
 """
 function oeis_remote(anum)
-    if ! ismatch(r"^A[0-9]{6}$", anum)
+    if !ismatch(r"^A[0-9]{6}$", anum)
         warn("Not a valid A-number!")
         return
     end
@@ -112,7 +112,7 @@ function oeis_remote(anum)
     r = nothing
     for i = 1:tries
         try
-            r = get(url; timeout = .5)
+            r = get(url; timeout=.5)
             r.status == 200 && break
             if contains(r.headers["Content-Type"], "text/html")
                 display("text/html", r.data)
@@ -144,7 +144,7 @@ the 'MathIntSeq/data' directory .
 """
 function oeis_local(anum::String, bound::Int)
 
-    if ! ismatch(r"^A[0-9]{6}$", anum)
+    if !ismatch(r"^A[0-9]{6}$", anum)
         warn("Not a valid A-number!")
         return []
     end
@@ -155,7 +155,7 @@ function oeis_local(anum::String, bound::Int)
     data = open(oeis_path())
     for ln in eachline(data)
         if startswith(ln, anum)
-            A = split(chop(chomp(ln)), ","; limit = bound + 2)
+            A = split(chop(chomp(ln)), ","; limit=bound + 2)
             break;
         end
     end
@@ -188,7 +188,7 @@ function oeis_search(seq::String, restart::Bool)
     end
     close(data)
 
-    if ! found && restart
+    if !found && restart
         ind = search(seq, ',')
         if (ind > 0) && (length(seq) > ind)
             seq = seq[ind + 1:end]

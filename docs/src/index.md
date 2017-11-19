@@ -1,12 +1,3 @@
-Prefixes of a sequence number referring to the OEIS:
-* A: Single term: A[n]
-* B: Bound: all 0 ≤ A[n] ≤ bound.
-* C: Coroutine (channel) generating A.
-* L: List: initial segment of A of length n.
-* M: Matrix of a triangular array with n rows.
-* T: Triangular array with n rows.
-
-&rarr; _Sequence names are linked to the source._
 ```@docs
 Accumulate
 André
@@ -22,10 +13,6 @@ BernoulliInt
 BernoulliIntList
 BernoulliList
 Binomial
-C000002
-C000111
-C002093
-C005101
 CatalanNumber
 CentralBinomial
 ClausenNumber
@@ -57,7 +44,6 @@ GaußLcm
 HasNoPrimitiveRoot
 HasPrimitiveRoot
 HilbertHotel
-I005101
 IndexIn
 Indicators
 IndicatorsFind
@@ -91,6 +77,7 @@ Lah
 LahTriangle
 Last
 List
+LouisaNumber
 MultiFactorial
 Next
 NextPrime
@@ -146,6 +133,7 @@ oeis_remote
 oeis_search
 oeis_trimdata
 oeis_writebfile
+primesmask
 Δto□
 Ω
 ι
@@ -160,6 +148,7 @@ oeis_writebfile
 ⊥
 ⍊
 □toΔ
+C000002
 L000002
 A000005
 A000010
@@ -171,6 +160,7 @@ A000108
 A000110
 L000110
 A000111
+C000111
 L000118
 L000122
 L000132
@@ -227,6 +217,7 @@ A001803
 A001813
 L001934
 B002093
+C002093
 L002093
 L002107
 A002110
@@ -275,6 +266,7 @@ L004424
 L004425
 T004747
 B005101
+C005101
 L005101
 L005117
 L005411
@@ -501,6 +493,7 @@ L166474
 L167872
 A178963
 A178964
+A180000
 A181830
 A181936
 T184962

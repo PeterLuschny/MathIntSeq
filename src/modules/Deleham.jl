@@ -13,7 +13,7 @@ export T055883, T184962, T088969, T090981, T011117
 
 doc"""
 Return the product of two integer sequences introduced by Philippe Deléham in
-[A084938](http://oeis.org/A084938).
+A084938.
 """
 function DeléhamΔ(n::Int, S::Function, T::Function)
     n ≤ 0 && return fmpz[]

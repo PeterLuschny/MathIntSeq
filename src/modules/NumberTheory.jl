@@ -50,7 +50,7 @@ function PrimeDivisors(n)
 end
 
 doc"""
-Return the radical of n which is the product of the prime numbers dividing ``n``
+Return the radical of ``n`` which is the product of the prime numbers dividing ``n``
 (also called the squarefree kernel of ``n``).
 """
 Radical(n) = ∏(PrimeDivisors(n))
@@ -93,7 +93,7 @@ and ``d ⊥ n/d``.
 A034444(n::Int) = 1 << Int(ω(n))
 
 doc"""
-Return ``τ(n)`` (or ``σ_0(n)``), the number of divisors of ``n``. Cf. A000005.
+Return ``τ(n)`` (a.k.a. ``σ_0(n)``), the number of divisors of ``n``. Cf. A000005.
 """
 τ(n) = Nemo.sigma(fmpz(n), 0)
 
@@ -103,7 +103,7 @@ Return the number of divisors of ``n``.
 A000005(n) = τ(n)
 
 doc"""
-Return ``σ(n)`` (or ``σ_1(n)``), the sum of the divisors of ``n``. Cf. A000203.
+Return ``σ(n)`` (a.k.a. ``σ_1(n)``), the sum of the divisors of ``n``. Cf. A000203.
 """
 σ(n) = Nemo.sigma(fmpz(n), 1)
 
@@ -284,8 +284,7 @@ using Base.Test, OEISUtils, SeqBase, SeqTests, Nemo, NumberTheory, Products
 function test()
 
     # 0-based version of sequences
-    Data = Dict{Int, Array{fmpz}}(
-    034386 => [1, 1, 2, 6, 6, 30, 30, 210, 210, 210],
+    Data = Dict{Int,Array{fmpz}}(034386 => [1, 1, 2, 6, 6, 30, 30, 210, 210, 210],
     061142 => [1, 1, 2, 2, 4, 2, 4, 2, 8, 4],
     002110 => [1, 2, 6, 30, 210, 2310, 30030, 510510, 9699690, 223092870],
     000005 => [0, 1, 2, 2, 3, 2, 4, 2, 4, 3],
@@ -295,8 +294,7 @@ function test()
     001221 => [0, 0, 1, 1, 1, 1, 2, 1, 1, 1],
     008683 => [0, 1, -1, -1, 0, -1, 1, -1, 0, 0],
     181830 => [0, 1, 0, 0, 0, 1, 0, 2, 2, 2],
-    034444 => [1, 1, 2, 2, 2, 2, 4, 2, 2, 2]
-    )
+    034444 => [1, 1, 2, 2, 2, 2, 4, 2, 2, 2])
 
     @testset "NumTheory" begin
         @test τ(7560) == 64

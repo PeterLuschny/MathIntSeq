@@ -46,7 +46,7 @@ function Pascal(n::Int, k::Int)
         p > 1 && push!(factors, p)
     end
 
-∏(factors) end
+    ∏(factors) end
 
 doc"""
 Pascal's triangle.
@@ -54,18 +54,19 @@ Pascal's triangle.
 function T007318(n::Int)
     T = SeqTriangle(n)
     j = 0
-    for m in 0:n-1, k in 0:m
+    for m in 0:n - 1, k in 0:m
         T[j] = binom(m, k)
         j += 1
     end
     T
 end
 
+# See the discussion on
+# [Extensions of the Binomial](http://oeis.org/wiki/User:Peter_Luschny/ExtensionsOfTheBinomial).
 doc"""
 Return the extended binomial coefficients defined for all ``n ∈ Z`` and ``k ∈ Z``.
-``\binom{n}{k} = \lim\limits_{x \to 1}(Γ(n + x) / (Γ(k + x) Γ(n - k + x)))``.
-Behaves like the binomial function in Maple and Mathematica. See the discussion on
-[Extensions of the Binomial](http://oeis.org/wiki/User:Peter_Luschny/ExtensionsOfTheBinomial).
+``$\binom{n}{k} = \lim\limits_{x \to 1}(Γ(n + x) / (Γ(k + x) Γ(n - k + x)))$``.
+Behaves like the binomial function in Maple and Mathematica.
 """
 function Binomial(n::Int, k::Int)
     0 ≤ k ≤ n  && return binom(n, k)
@@ -82,8 +83,8 @@ using Base.Test, SeqBase, SeqTests, SwingingFactorial, GeneralBinomial, Nemo
 function test()
     @testset "Binomial" begin
         for n in 0:10, k in 0:n
-            @test Binomial(n,k) == div(fac(n),(fac(n-k)*fac(k)))
-            @test Binomial(n,k) == Pascal(n,k)
+            @test Binomial(n, k) == div(fac(n), (fac(n - k) * fac(k)))
+            @test Binomial(n, k) == Pascal(n, k)
         end
     end
 end

@@ -4,9 +4,9 @@
 module SwingingFactorial
 using Nemo, SeqBase, Products, PrimeSieve, NumberTheory
 
-export Swing, CatalanNumber, CentralBinomial, Factorial, Apéry
+export Swing, CatalanNumber, CentralBinomial, Factorial, LouisaNumber, Apéry
 export A163590, A001790, A001803, A056040, A000984, A002457, A057977
-export A281594, A080397, A000108, A163641, A049606, A005430
+export A281594, A080397, A000108, A163641, A049606, A005430, A180000
 export L163085
 
 SwingOddpart = fmpz[1,1,1,3,3,15,5,35,35, 315, 63, 693, 231,
@@ -112,8 +112,22 @@ function L163085(len)
 end
 
 doc"""
-Return the n-th extended Catalan number. Cf. the exposition
-[Lost Catalan Numbers](http://oeis.org/wiki/User:Peter_Luschny/TheLostCatalanNumbers).
+Return lcm``({1,2,...,n}) / n≀``.
+"""
+function A180000(n::Int)
+    N = [j for j in 1:n]
+    N == [] ? 1 : div(fmpz(lcm(N)), Swing(n))
+end
+
+doc"""
+Return the Louisa number of ``n``. Cf. A180000.
+"""
+LouisaNumber(n) = A180000(n)
+
+# Cf. the exposition [Lost Catalan Numbers]
+# (http://oeis.org/wiki/User:Peter_Luschny/TheLostCatalanNumbers).
+doc"""
+Return the n-th extended Catalan number. (Search for "Lost Catalan Numbers".)
 """
 A057977(n) = div(Swing(n), div(n, 2) + 1)
 
@@ -184,6 +198,10 @@ function test()
 
         a = L163085(9)
         b = SeqArray([1, 1, 2, 12, 72, 2160, 43200, 6048000, 423360000])
+        @test all(a .== b)
+
+        a = SeqArray([LouisaNumber(n) for n in 0:9])
+        b = SeqArray([1, 1, 1, 1, 2, 2, 3, 3, 12, 4])
         @test all(a .== b)
 
         if oeis_isinstalled()

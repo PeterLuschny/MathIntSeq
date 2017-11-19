@@ -9,11 +9,11 @@ export B002183, B002182, B034885, B006093, B006005, B002093
 export L002183, L002182, L034885, L006093, L006005
 
 doc"""
-Return maxima relative to the predecessors and their positions of a sequence f
-as a pair of lists (r, i) where r contains the maxima and i the index where
-they occur.
+Return maxima relative to the predecessors and their positions of a sequence ``f``
+as a pair of lists ``(r, i)`` where ``r`` contains the maxima and ``i`` the
+index where they occur.
 
-f(0) is a maximum and f(i) is a maximum if f(j) < f(i) for all 0 < j < i.
+``f(0)`` is a maximum and ``f(i)`` is a maximum if ``f(j) < f(i)`` for all ``0 < j < i`` .
 All maxima ≤ bound are returned. In the OEIS such values are often called
 'record values'.
 """
@@ -34,11 +34,11 @@ function FindMaximaUpTo(bound::Int, f::Function)
 end
 
 doc"""
-Return maxima relative to the predecessors and their positions of a sequence f
-as a pair of lists (r, i) where r contains the maxima and i the index where
+Return maxima relative to the predecessors and their positions of a sequence ``f``
+as a pair of lists ``(r, i)`` where ``r`` contains the maxima and ``i`` the index where
 they occur.
 
-f(0) is a maximum and f(i) is a maximum if f(j) < f(i) for all 0 < j < i.
+``f(0)`` is a maximum and ``f(i)`` is a maximum if ``f(j) < f(i)`` for all ``0 < j < i`` .
 In the OEIS such values are often called 'record values'.
 """
 function FindMaxima(len::Int, f::Function)

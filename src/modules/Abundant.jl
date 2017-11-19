@@ -4,10 +4,10 @@
 module Abundant
 using Nemo, SeqBase, NumberTheory
 
-export IsAbundant, C005101, L005101, I005101, B005101, C002093, L002093
+export IsAbundant, C005101, L005101, B005101, C002093, L002093
 
 doc"""
-Is ``n`` an abundant number, i.e. is ``σ(n) > 2n``?
+Is ``n`` an abundant number, i.e. is ``σ(n) > 2n `` ?
 """
 IsAbundant(n) = σ(n) - n > n
 
@@ -56,10 +56,10 @@ julia> L005101(9)
 L005101(len) = SeqArray(len, IsAbundant)
 
 # We include an alternative implementation to compare the running times.
-doc"""
-Return a list of length len of abundant numbers. (L005101 is faster.)
-"""
-I005101(len) = SeqArray(len, C005101())
+#doc"""
+#Return a list of length len of abundant numbers. (L005101 is faster.)
+#"""
+#I005101(len) = SeqArray(len, C005101())
 
 doc"""
 Return a list of abundant numbers which do not exceed the given bound.
@@ -132,9 +132,9 @@ L002093(200)   :: 0.773658 seconds (720.73 k allocations: 11.006 MB, 6.30% gc ti
 function perf()
     L005101(10)
     @time L005101(80000)
-    gc()
-    I005101(10)
-    @time I005101(80000)
+    #gc()
+    #I005101(10)
+    #@time I005101(80000)
     gc()
     L002093(10)
     @time L002093(200)

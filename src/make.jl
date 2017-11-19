@@ -19,11 +19,10 @@ if firsttime
     Pkg.add("OffsetArrays")
     Pkg.add("Requests")
     Pkg.add("URIParser")
-    Pkg.add("Documenter")
+#   Pkg.add("Documenter")
     Pkg.add("Lint")
     Pkg.update()
 end
-using Lint
 
 srcdir = realpath(joinpath(dirname(@__FILE__)))
 pkgdir = dirname(srcdir)
@@ -32,13 +31,14 @@ tstdir = joinpath(pkgdir, "test")
 if srcdir ∉ LOAD_PATH
     push!(LOAD_PATH, srcdir)
 end
-
 info(LOAD_PATH)
+
+using MathIntSeqBuild #, Lint
 
 cd(srcdir)
 
 info(" *** building MathIntSeq")
-run(`julia MathIntSeqBuild.jl`)
+MathIntSeqBuild.build_all()
 
 info(" *** running MathIntSeq")
 run(`julia MathIntSeq.jl`)
@@ -47,9 +47,11 @@ run(`julia MathIntSeq.jl`)
 #lintfile("MathIntSeq.jl")
 
 pkg = joinpath(Pkg.dir(), "MathIntSeq")
-src = joinpath(pkg, "src")
-mis = joinpath(src, "MathIntSeq.jl")
-cp("MathIntSeq.jl", mis; remove_destination=true)
+dest = joinpath(joinpath(pkg, "src"), "MathIntSeq.jl")
+src = joinpath(srcdir, "MathIntSeq.jl")
+if src != dest
+    cp(src, dest; remove_destination=true)
+end
 
 cd(tstdir)
 
@@ -65,7 +67,7 @@ run(`julia perftests.jl`)
 
 cd(srcdir)
 
-info(" *** build finished successfully")
+info(" *** build finished")
 
 #info("  -  TODO: check for performance regressions")
 #info("  -  TODO: update git")
