@@ -12,7 +12,6 @@
 module MathIntSeqBuild
 export build_all
 
-gitdir = "https://github.com/OpenLibMathSeq/MathIntSeq/blob/master/src/modules/"
 srcdir = realpath(joinpath(dirname(@__FILE__)))
 pkgdir = dirname(srcdir)
 moddir = joinpath(srcdir, "modules")
@@ -118,7 +117,7 @@ function build_seq(docdefs)
             save2 = true; continue; end
             print(tmp, l)
         end
-        	    close(mod)
+        close(mod)
     end
 
     flush(exp)
@@ -232,7 +231,7 @@ function build_test()
         for k in 1:j - 1
             print(o, buff[k])
         end
-        	    close(i)
+        close(i)
     end
     print(o, "end # module")
     close(o)
@@ -313,27 +312,11 @@ function make_index()
     close(tind)
 end
 
-# Builds the file modules.md in docs/src.
-function get_modules()
-
-    path = joinpath(docsrcdir, "modules.md")
-    mod = open(path, "w")
-    println(mod, "# Modules")
-    seq_modules = filter!(r"\.jl$", readdir(moddir))
-    for filename in seq_modules
-        filename in exclude && continue
-        name = split(filename, ".")
-        println(mod, "[", name[1], "](", gitdir, filename, ")")
-    end
-    close(mod)
-end
-
 function build_all(docdefs = false)
     build_seq(docdefs)
     build_test()
     build_perf()
     make_index()
-    get_modules()
     rm("_TEMP.jl")
     rm("_EXPORT.jl")
     rm("_INDEX.jl")

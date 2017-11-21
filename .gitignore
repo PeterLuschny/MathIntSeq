@@ -1,5 +1,4 @@
 local/*
-docs/build
-docs/site
-docs/obsolet
-docs/src/nbs/SeqNotebook.html
+docs/*
+
+

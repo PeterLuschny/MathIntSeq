@@ -1,0 +1,83 @@
+Test Summary: | Pass  Total
+Abundant      |    7      7
+Test Summary: | Pass  Total
+AndrÃ©         |   21     21
+Test Summary: | Pass  Total
+Bell          |    9      9
+Test Summary: | Pass  Total
+BernoulliNum  |   55     55
+Test Summary: | Pass  Total
+BinaryQF      |   22     22
+Test Summary: | Pass  Total
+Clausen       |    8      8
+
+Counts: Error During Test at /home/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:236
+  Got an exception of type MethodError outside of a @test
+  MethodError: no method matching linearindices(::Base.Generator{UnitRange{Int64},getfield(MathIntSeq, Symbol("##280#281")){typeof(MathIntSeq.IsSquareFree)}})
+  Closest candidates are:
+    linearindices(!Matched::SimpleVector) at essentials.jl:539
+    linearindices(!Matched::AbstractArray{T,1} where T) at abstractarray.jl:105
+    linearindices(!Matched::AbstractArray) at abstractarray.jl:104
+    ...
+  Stacktrace:
+   [1] SeqSize(::Base.Generator{UnitRange{Int64},getfield(MathIntSeq, Symbol("##280#281")){typeof(MathIntSeq.IsSquareFree)}}) at /home/travis/.julia/v0.7/MathIntSeq/src/MathIntSeq.jl:3723
+   [2] Accumulate(::Base.Generator{UnitRange{Int64},getfield(MathIntSeq, Symbol("##280#281")){typeof(MathIntSeq.IsSquareFree)}}) at /home/travis/.julia/v0.7/MathIntSeq/src/MathIntSeq.jl:4181
+   [3] L013928(::Int64) at /home/travis/.julia/v0.7/MathIntSeq/src/MathIntSeq.jl:1452
+   [4] SeqLTest(::Array{Function,1}) at /home/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:52
+   [5] SeqTest(::Array{Function,1}, ::Char) at /home/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:19
+   [6] macro expansion at /home/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:258 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/site/v0.7/Test/src/Test.jl:950 [inlined]
+   [8] top-level scope at /home/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:237
+   [9] include_relative(::Module, ::String) at ./loading.jl:509
+   [10] include(::Module, ::String) at ./sysimg.jl:15
+   [11] process_options(::Base.JLOptions) at ./client.jl:334
+   [12] _start() at ./client.jl:400
+Test Summary: | Pass  Error  Total
+Counts        |  124      1    125
+ERROR: LoadError: Some tests did not pass: 124 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /home/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:236
+
+=============================[ ERROR: MathIntSeq ]==============================
+
+Test Summary: | Pass  Total
+Abundant      |    7      7
+Test Summary: | Pass  Total
+AndrÃ©         |   21     21
+Test Summary: | Pass  Total
+Bell          |    9      9
+Test Summary: | Pass  Total
+BernoulliNum  |   55     55
+Test Summary: | Pass  Total
+BinaryQF      |   22     22
+Test Summary: | Pass  Total
+Clausen       |    8      8
+
+Counts: Error During Test at /Users/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:236
+  Got an exception of type MethodError outside of a @test
+  MethodError: no method matching linearindices(::Base.Generator{UnitRange{Int64},getfield(MathIntSeq, Symbol("##280#281")){typeof(MathIntSeq.IsSquareFree)}})
+  Closest candidates are:
+    linearindices(!Matched::SimpleVector) at essentials.jl:539
+    linearindices(!Matched::AbstractArray{T,1} where T) at abstractarray.jl:105
+    linearindices(!Matched::AbstractArray) at abstractarray.jl:104
+    ...
+  Stacktrace:
+   [1] SeqSize(::Base.Generator{UnitRange{Int64},getfield(MathIntSeq, Symbol("##280#281")){typeof(MathIntSeq.IsSquareFree)}}) at /Users/travis/.julia/v0.7/MathIntSeq/src/MathIntSeq.jl:3723
+   [2] Accumulate(::Base.Generator{UnitRange{Int64},getfield(MathIntSeq, Symbol("##280#281")){typeof(MathIntSeq.IsSquareFree)}}) at /Users/travis/.julia/v0.7/MathIntSeq/src/MathIntSeq.jl:4181
+   [3] L013928(::Int64) at /Users/travis/.julia/v0.7/MathIntSeq/src/MathIntSeq.jl:1452
+   [4] SeqLTest(::Array{Function,1}) at /Users/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:52
+   [5] SeqTest(::Array{Function,1}, ::Char) at /Users/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:19
+   [6] macro expansion at /Users/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:258 [inlined]
+   [7] macro expansion at /Users/osx/buildbot/slave/package_osx64/build/usr/share/julia/site/v0.7/Test/src/Test.jl:950 [inlined]
+   [8] top-level scope at /Users/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:237
+   [9] include_relative(::Module, ::String) at ./loading.jl:509
+   [10] include(::Module, ::String) at ./sysimg.jl:15
+   [11] process_options(::Base.JLOptions) at ./client.jl:334
+   [12] _start() at ./client.jl:400
+
+Test Summary: | Pass  Error  Total
+Counts        |  124      1    125
+
+ERROR: LoadError: Some tests did not pass: 124 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /Users/travis/.julia/v0.7/MathIntSeq/test/runtests.jl:236
+=============================[ ERROR: MathIntSeq ]==============================
+

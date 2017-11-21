@@ -11,21 +11,24 @@ info(LOAD_PATH)
 module HtmlDoc
 using MathIntSeqBuild
 
-function compressfile()
+#gitdir = "https://github.com/OpenLibMathSeq/MathIntSeq/blob/master/src/modules/"
+gitdir = "https://github.com/PeterLuschny/MathIntSeq/blob/master/src/modules/"
+
+function compressfile(_head, _art, _foot, _dest)
 
     docdir = realpath(joinpath(dirname(@__FILE__)))
-    head = open(joinpath(docdir, "head.html"), "r")
-    art  = open(joinpath(docdir, "article.html"), "r")
-    tail = open(joinpath(docdir, "tail.html"), "r")
-    dest = open(joinpath(docdir, "MathIntSeq.html"), "w")
+    head = open(joinpath(docdir, _head), "r")
+    art  = open(joinpath(docdir, _art), "r")
+    foot = open(joinpath(docdir, _foot), "r")
+    dest = open(joinpath(docdir, _dest), "w")
 
     for l in eachline(head) print(dest, l) end
     for l in eachline(art)  print(dest, l) end
-    for l in eachline(tail) print(dest, l) end
+    for l in eachline(foot) print(dest, l) end
 
     head = close(head)
     art  = close(art)
-    tail = close(tail)
+    tail = close(foot)
     dest = close(dest)
 end
 
@@ -39,13 +42,13 @@ function escape_chars(i::AbstractString)
     return o
 end
 
-function writearticle()
+function writeseqarticle()
 
     docdir = realpath(joinpath(dirname(@__FILE__)))
     pkgdir = dirname(docdir)
     srcdir = joinpath(pkgdir, "src")
     mis = open(joinpath(srcdir, "MathIntSeq.jl"), "r")
-    doc = open(joinpath(docdir, "article.html"), "w")
+    doc = open(joinpath(docdir, "seqarticle.html"), "w")
 
     docline = false
     example = false
@@ -107,15 +110,40 @@ function writearticle()
     close(doc)
 end
 
+function writemodarticle()
+
+    docdir = realpath(joinpath(dirname(@__FILE__)))
+    pkgdir = dirname(docdir)
+    srcdir = joinpath(pkgdir, "src")
+    moddir = joinpath(srcdir, "modules")
+    modart = open(joinpath(docdir, "modarticle.html"), "w")
+
+    exclude = ["OLMS.jl", "SeqTests.jl"]
+    seq_modules = filter!(r"\.jl$", readdir(moddir))
+    for filename in seq_modules
+        filename in exclude && continue
+        name = split(filename, ".")
+        println(modart, "<a href=\"" * filename * "\">" * name[1] * "</a>  ")
+    end
+    close(modart)
+end
+
 function makedoc()
     MathIntSeqBuild.build_all(true)
-    writearticle()
-    compressfile()
+    writeseqarticle()
+    compressfile("seqhead.html", "seqarticle.html", "seqfoot.html", "MathIntSeq.html")
     MathIntSeqBuild.build_all(false)
+
+    writemodarticle()
+    compressfile("modhead.html", "modarticle.html", "modfoot.html", "modules.html")
 
     docdir = realpath(joinpath(dirname(@__FILE__)))
     src = joinpath(docdir, "MathIntSeq.html")
     dst = joinpath(joinpath(docdir, "site"), "index.html")
+    cp(src, dst; remove_destination=true)
+
+    src = joinpath(docdir, "modules.html")
+    dst = joinpath(joinpath(joinpath(docdir, "site"), "modules"), "index.html")
     cp(src, dst; remove_destination=true)
 end
 
