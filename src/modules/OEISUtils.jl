@@ -11,7 +11,7 @@ export oeis_notinstalled, oeis_path, oeis_search
 #Directory of oeis data.
 #"""
 MODDIR = realpath(joinpath(dirname(@__FILE__)))
-DATADIR = contains(MODDIR, Pkg.dir()) ? joinpath(dirname(MODDIR), "data") : joinpath(dirname(dirname(MODDIR)), "data")
+DATADIR = joinpath(dirname(MODDIR), "data")
 
 doc"""
 Returns the path where the oeis data is expected.
@@ -30,7 +30,7 @@ Indicates if the local copy of the OEIS data (the so-called
 """
 function oeis_notinstalled()
     if !oeis_isinstalled()
-        warn("OEIS data not installed! Download stripped.gz from oeis.org")
+        warn("OEIS data not installed! Download stripped.gz from oeis.org,")
         warn("expand it and put it in the directory MathIntSeq/data.")
         return true
     end

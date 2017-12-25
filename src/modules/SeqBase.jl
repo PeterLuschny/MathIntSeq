@@ -280,15 +280,25 @@ function SeqShow(A, R::Range)
     end
 end
 
+function print_without_type(io, v::AbstractVector)
+    print(io, "[")
+    for (i, el) in enumerate(v)
+        i > 1 && print(io, ", ")
+        print(io, el)
+    end
+    println(io, "]")
+end
+
+doc"""
+Print the array without typeinfo.
+"""
+Println(v::AbstractVector) = print_without_type(IOContext(STDOUT; :compact => true), v)
+
 doc"""
 Print the SeqArray with or without typeinfo.
 """
-function SeqPrint(A, typeinfo = false)
-    if typeinfo
-        println(A)
-    else
-        Base.showarray(STDOUT, A, false; header = false)
-    end
+function SeqPrint(v::AbstractVector, typeinfo = false)
+    typeinfo ? println(v) : Println(v)
 end
 
 doc"""

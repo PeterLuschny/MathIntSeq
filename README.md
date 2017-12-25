@@ -46,6 +46,4 @@ If you want to contribute to MathIntSeq see
 
 - [Contributing](https://github.com/OpenLibMathSeq/MathIntSeq/blob/master/CONTRIBUTING.md).                
 
-Any feedback is welcome. Issues and suggestions should be posted to
-
--  [MathIntSeq's issue tracker](https://github.com/OpenLibMathSeq/MathIntSeq/issues).
+Any feedback is welcome. Please post issues and suggestions to the issue tracker.

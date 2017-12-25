@@ -2,7 +2,7 @@
 # Copyright Peter Luschny. License is MIT.
 
 module Hyper1F1
-using Nemo, SwingingFactorial
+using Nemo
 
 export GammaHyp, A000262, A007060, A033815, A099022, A251568
 

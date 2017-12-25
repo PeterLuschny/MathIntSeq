@@ -20,7 +20,7 @@ if firsttime
     Pkg.add("Requests")
     Pkg.add("URIParser")
 #   Pkg.add("Documenter")
-    Pkg.add("Lint")
+#   Pkg.add("Lint")
     Pkg.update()
 end
 
