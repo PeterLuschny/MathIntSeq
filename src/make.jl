@@ -24,9 +24,9 @@ if firsttime
     Pkg.update()
 end
 
-srcdir = realpath(joinpath(dirname(@__FILE__)))
-pkgdir = dirname(srcdir)
-tstdir = joinpath(pkgdir, "test")
+ROOTDIR = Pkg.dir("MathIntSeq")
+srcdir = joinpath(ROOTDIR, "src")
+tstdir = joinpath(ROOTDIR, "test")
 
 if srcdir ∉ LOAD_PATH
     push!(LOAD_PATH, srcdir)
@@ -46,13 +46,6 @@ run(`julia MathIntSeq.jl`)
 #info(" *** lint MathIntSeq running ...")
 #lintfile("MathIntSeq.jl")
 
-pkg = joinpath(Pkg.dir(), "MathIntSeq")
-dest = joinpath(joinpath(pkg, "src"), "MathIntSeq.jl")
-src = joinpath(srcdir, "MathIntSeq.jl")
-if src != dest
-    cp(src, dest; remove_destination=true)
-end
-
 cd(tstdir)
 
 #info(" *** lint runtests running ...")
@@ -62,10 +55,10 @@ info(" *** runtests")
 run(`julia runtests.jl`)
 
 info(" *** documenting performance")
-run(`julia perftests.jl`)
-# info(" results are in performance.txt")
+#run(`julia perftests.jl`)
+info(" results are in performance.txt")
 
-cd(srcdir)
+cd(ROOTDIR)
 
 info(" *** build finished")
 

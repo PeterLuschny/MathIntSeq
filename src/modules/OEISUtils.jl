@@ -2,7 +2,7 @@
 # Copyright Peter Luschny. License is MIT.
 
 module OEISUtils
-using Requests, URIParser, SeqBase, Nemo
+using HTTP, SeqBase, Nemo
 
 export oeis_writebfile, oeis_trimdata, oeis_remote, oeis_local, oeis_isinstalled
 export oeis_notinstalled, oeis_path, oeis_search
@@ -10,13 +10,15 @@ export oeis_notinstalled, oeis_path, oeis_search
 #doc"""
 #Directory of oeis data.
 #"""
-MODDIR = realpath(joinpath(dirname(@__FILE__)))
-DATADIR = joinpath(dirname(MODDIR), "data")
+ROOTDIR = Pkg.dir("MathIntSeq")
+datadir = joinpath(ROOTDIR, "data")
+srcdir = joinpath(ROOTDIR, "src")
+moddir = joinpath(srcdir, "modules")
 
 doc"""
 Returns the path where the oeis data is expected.
 """
-oeis_path() = joinpath(DATADIR, "stripped")
+oeis_path() = joinpath(datadir, "stripped")
 
 doc"""
 Indicates if the local copy of the OEIS data (the so-called
@@ -48,7 +50,7 @@ function oeis_writebfile(anum, fun, offset::Int, len::Int)
         return
     end
 
-    filename = joinpath(DATADIR, "b" * anum[2:end] * ".txt")
+    filename = joinpath(datadir, "b" * anum[2:end] * ".txt")
     info("Writing " * anum * " to " * filename)
 
     f = open(filename, "w")
@@ -65,7 +67,7 @@ function oeis_writebfile(anum, list)
         return
     end
 
-    filename = joinpath(DATADIR, "b" * anum[2:end] * ".txt")
+    filename = joinpath(datadir, "b" * anum[2:end] * ".txt")
     info("Writing " * anum * " to " * filename)
 
     n = 1
@@ -105,33 +107,31 @@ function oeis_remote(anum)
         return
     end
 
-    filename = joinpath(DATADIR, anum * ".json")
+    filename = joinpath(datadir, anum * ".json")
 
-    url = URI("http://oeis.org/search?q=id:" * anum * "&fmt=json")
+    url = HTTP.URI("http://oeis.org/search?q=id:" * anum * "&fmt=json")
     tries = 3
     r = nothing
     for i = 1:tries
         try
-            r = get(url; timeout=.5)
-            r.status == 200 && break
-            if contains(r.headers["Content-Type"], "text/html")
-                display("text/html", r.data)
-            end
-            r.status == 302 && break # redirection
+            r = HTTP.get(url; readtimeout=.5)
+            HTTP.status(r) == 200 && break
+            HTTP.status(r) == 302 && break # redirection
         catch e
             # warn(e)
         end
         sleep(2)
     end
-    if r ≠ nothing && r.status == 200
+    if r ≠ nothing && HTTP.status(r) == 200
         open(filename, "w") do f
-            write(f, r.data)
+            write(f, HTTP.body(r))
         end
+        info("Dowloaded " * basename(filename) * " to " * datadir)
     else
         if r == nothing
             warn("Could not download $url, connection timed out.\n")
         else
-            warn("Could not download $url\nStatus: $(r.status)")
+            warn("Could not download $url\nStatus: $(HTTP.status(r))")
         end
     end
 end
