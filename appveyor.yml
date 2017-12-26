@@ -30,7 +30,6 @@ build_script:
     - IF EXIST .git\shallow (git fetch --unshallow)
     - C:\projects\julia\bin\julia -e "versioninfo();
       Pkg.add(\"Nemo\");
-      Pkg.add(\"Combinatorics\");
       Pkg.add(\"Memoize\");
       Pkg.add(\"HTTP\");
       Pkg.add(\"OffsetArrays\");

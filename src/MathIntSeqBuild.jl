@@ -19,7 +19,7 @@ docdir = joinpath(pkgdir, "docs")
 docsrcdir = joinpath(docdir, "src")
 tstdir = joinpath(pkgdir, "test")
 
-exclude = ["OLMS.jl", "SeqTests.jl"]
+exclude = ["OLMS.jl", "SeqTests.jl", "CombinationsIterator.jl", "ZumkellerNumbers.jl"]
 
 function header(f)
     println(f, "# This file is part of OLMS (Open Library of Mathematical Sequences).")
@@ -159,7 +159,7 @@ function build_seq(docdefs)
     # println(olm, "__precompile__(true)")
     ################################
     println(olm, "module MathIntSeq")
-    println(olm, "using Memoize, Combinatorics, HTTP, Nemo, OffsetArrays")
+    println(olm, "using Memoize, HTTP, Nemo, OffsetArrays")
 
     for l in eachline(sor, chomp = false) print(olm, l) end
     println("ROOTDIR name:")

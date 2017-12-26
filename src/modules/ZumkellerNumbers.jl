@@ -20,7 +20,7 @@ function IsZumkeller(n::Int)
     S = s >> 1 - n
     D = [d for d in T if d ≤ S]
     D == [] && return true
-    for c in combinations(D)
+    for c in combinations(D) # needs Combinatorics
         S == sum(c) && return true
     end
 false end

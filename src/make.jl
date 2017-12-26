@@ -15,7 +15,6 @@ firsttime = false
 if firsttime
     Pkg.add("Nemo")
     Pkg.add("Memoize")
-    Pkg.add("Combinatorics")
     Pkg.add("OffsetArrays")
     Pkg.add("HTTP")
 #   Pkg.add("Documenter")

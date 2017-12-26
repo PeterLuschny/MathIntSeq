@@ -14,7 +14,6 @@ notifications:
 script:
 - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 - julia -e 'Pkg.add("Nemo")'
-- julia -e 'Pkg.add("Combinatorics")'
 - julia -e 'Pkg.add("Memoize")'
 - julia -e 'Pkg.add("HTTP")'
 - julia -e 'Pkg.add("OffsetArrays")'

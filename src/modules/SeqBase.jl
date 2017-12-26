@@ -12,7 +12,7 @@ export Nth, IterateUpTo, Count, IndexIn, CountList, Enumerator, Accumulate
 export IndicatorsFind, First, Previous, Next
 
 # Base *everything* on Iterators
-# Two flavors: 'List of lenght n' and 'List uo to'.
+# Two flavors: 'List of lenght n' and 'List up to'.
 # Do we need 0/1 idicators or are boolean indicators 'isA' enough?
 # https://docs.julialang.org/en/latest/manual/interfaces.html
 
@@ -22,7 +22,7 @@ ZeroRange(n) = 0:n - 1
 doc"""
 Return the size of a SeqArray.
 """
-SeqSize(A) = length(linearindices(A))
+SeqSize(A) = Base.length(linearindices(A))
 
 doc"""
 Return the range of a SeqArray.
@@ -269,8 +269,7 @@ doc"""
 Print the SeqArray in the format 'n ↦ A[n]'.
 """
 SeqShow(A) = SeqShow(A, SeqRange(A))
-
-function SeqShow(A, R::Range)
+function SeqShow(A, R)
     for i in R
         if isassigned(A, i)
             println(i, " ↦ ", A[i])

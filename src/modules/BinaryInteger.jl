@@ -1,3 +1,6 @@
+# This file is part of OLMS (Open Library of Mathematical Sequences).
+# Copyright Peter Luschny. License is MIT.
+
 module BinaryInteger
 
 export A001855, A003314, A033156, A054248, A061168, A083652, A097383, A123753
