@@ -159,7 +159,7 @@ function build_seq(docdefs)
     # println(olm, "__precompile__(true)")
     ################################
     println(olm, "module MathIntSeq")
-    println(olm, "using Memoize, Combinatorics, Requests, URIParser, Nemo, OffsetArrays")
+    println(olm, "using Memoize, Combinatorics, HTTP, Nemo, OffsetArrays")
 
     for l in eachline(sor, chomp = false) print(olm, l) end
     println("ROOTDIR name:")

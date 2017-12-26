@@ -5,7 +5,7 @@ environment:
 
 matrix:
   allow_failures:
-    - JULIAVERSION: "julianightlies/bin/winnt/x64/julia-latest-win64.exe"      
+    - JULIAVERSION: "julianightlies/bin/winnt/x64/julia-latest-win64.exe"
 
 branches:
   only:
@@ -32,8 +32,7 @@ build_script:
     Pkg.add(\"Nemo\");
     Pkg.add(\"Combinatorics\");
     Pkg.add(\"Memoize\");
-    Pkg.add(\"Requests\");
-    Pkg.add(\"URIParser\");
+    Pkg.add(\"HTTP\");
     Pkg.add(\"OffsetArrays\");
     Pkg.clone(pwd(), \"MathIntSeq\");
     Pkg.build(\"MathIntSeq\")"
