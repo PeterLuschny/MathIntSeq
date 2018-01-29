@@ -33,6 +33,7 @@ build_script:
       Pkg.add(\"Memoize\");
       Pkg.add(\"HTTP\");
       Pkg.add(\"OffsetArrays\");
+      Pkg.add(\"IterTool\");
       Pkg.clone(pwd(), \"MathIntSeq\");
       Pkg.build(\"MathIntSeq\")"
 

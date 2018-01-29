@@ -17,6 +17,7 @@ if firsttime
     Pkg.add("Memoize")
     Pkg.add("OffsetArrays")
     Pkg.add("HTTP")
+    Pkg.add("IterTool")
 #   Pkg.add("Documenter")
 #   Pkg.add("Lint")
     Pkg.update()
