@@ -11,7 +11,7 @@ Executing SeqBuild.jl produces MathIntSeq.jl which is the
 ! modules of the same sequence).
 =#
 
-firsttime = false
+firsttime = true # false
 if firsttime
     Pkg.add("Nemo")
     Pkg.add("Memoize")

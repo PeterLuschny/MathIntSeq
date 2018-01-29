@@ -19,7 +19,7 @@ docdir = joinpath(pkgdir, "docs")
 docsrcdir = joinpath(docdir, "src")
 tstdir = joinpath(pkgdir, "test")
 
-exclude = ["OLMS.jl", "SeqTests.jl", "NewBernoulli.jl"] #"CombinationsIterator.jl", "ZumkellerNumbers.jl",
+exclude = ["OLMS.jl", "SeqTests.jl", "NewBernoulli.jl"] 
 
 function header(f)
     println(f, "# This file is part of OLMS (Open Library of Mathematical Sequences).")
