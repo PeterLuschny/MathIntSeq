@@ -36,10 +36,10 @@ using MathIntSeqBuild #, Lint
 cd(srcdir)
 
 info(" *** building MathIntSeq")
-MathIntSeqBuild.build_all()
+run(`julia MathIntSeqBuild.jl`)
 
-info(" *** running MathIntSeq")
-run(`julia MathIntSeq.jl`)
+#info(" *** running MathIntSeq")
+#run(`julia MathIntSeq.jl`)
 
 #info(" *** lint MathIntSeq running ...")
 #lintfile("MathIntSeq.jl")
@@ -52,9 +52,9 @@ cd(tstdir)
 info(" *** runtests")
 run(`julia runtests.jl`)
 
-info(" *** documenting performance")
+#info(" *** documenting performance")
 #run(`julia perftests.jl`)
-info(" results are in performance.txt")
+#info(" results are in performance.txt")
 
 cd(ROOTDIR)
 

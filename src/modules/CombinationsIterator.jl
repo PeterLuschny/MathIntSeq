@@ -1,10 +1,12 @@
-# This file is part of JuliaMath/Combinatorics.jl (see GitHub)
-# and was modified here in part.
+# This file was part of JuliaMath/Combinatorics.jl (see GitHub)
+# and was modified here.
 # License is MIT.
 
 module CombinationsIterator
 
 using IterTools
+import Base: start, next, done, length, eltype
+
 export combinations
 
 immutable Combinations{T}
@@ -18,10 +20,10 @@ function next(c::Combinations, s)
     comb = [c.a[si] for si in s]
     if c.t == 0
         # special case to generate 1 result for t==0
-        return (comb, [leng(c.a) + 2])
+        return (comb, [length(c.a) + 2])
     end
     s = copy(s)
-    for i = leng(s):-1:1
+    for i = length(s):-1:1
         s[i] += 1
         if s[i] > (length(c.a) - (length(s)-i))
             continue
@@ -36,7 +38,7 @@ end
 
 done(c::Combinations, s) = !isempty(s) && s[1] > length(c.a) - c.t + 1
 
-leng(c::Combinations) = binomial(length(c.a), c.t)
+length(c::Combinations) = binomial(length(c.a), c.t)
 
 eltype{T}(::Type{Combinations{T}}) = Vector{eltype(T)}
 
@@ -57,6 +59,6 @@ end
 generate combinations of all orders, chaining of order iterators is eager,
 but sequence at each order is lazy
 """
-combinations(a) = chain([combinations(a, k) for k=1:length(a)]...)
+combinations(a) = IterTools.chain([combinations(a, k) for k=1:length(a)]...)
 
 end # module

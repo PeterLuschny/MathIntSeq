@@ -2,7 +2,7 @@
 # Copyright Peter Luschny. License is MIT.
 
 module ZumkellerNumbers
-using Nemo, SeqBase, NumberTheory, Combinatorics
+using Nemo, SeqBase, NumberTheory, CombinationsIterator
 
 export IsZumkeller, ZumkellerNumberList, L083207
 
@@ -20,7 +20,7 @@ function IsZumkeller(n::Int)
     S = s >> 1 - n
     D = [d for d in T if d ≤ S]
     D == [] && return true
-    for c in combinations(D) # needs Combinatorics
+    for c in combinations(D)
         S == sum(c) && return true
     end
 false end
@@ -38,7 +38,7 @@ L083207(len) = SeqArray(len, IsZumkeller)
 end # module
 
 module ZumkellerNumbersTest
-using Base.Test, Nemo, NumberTheory, ZumkellerNumbers
+using Base.Test, Nemo, NumberTheory, ZumkellerNumbers, CombinationsIterator
 
 function test()
     @testset "Zumkeller" begin

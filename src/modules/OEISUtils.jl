@@ -145,7 +145,7 @@ the 'MathIntSeq/data' directory .
 function oeis_local(anum::String, bound::Int)
 
     if !ismatch(r"^A[0-9]{6}$", anum)
-        warn("Not a valid A-number!")
+        warn(anum * " is not a valid A-number!")
         return []
     end
 
