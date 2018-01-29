@@ -38,7 +38,7 @@ L083207(len) = SeqArray(len, IsZumkeller)
 end # module
 
 module ZumkellerNumbersTest
-using Base.Test, Nemo, NumberTheory, ZumkellerNumbers, CombinationsIterator
+using Base.Test, Nemo, NumberTheory, ZumkellerNumbers
 
 function test()
     @testset "Zumkeller" begin
