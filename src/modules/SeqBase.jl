@@ -469,7 +469,7 @@ function SeqName(fun)
 
     if !ismatch(r"^A[0-9]{6}$", aname)
         fullname = split(aname, ".")
-        aname = String(fullname[2])
+        aname = String(fullname[end])
         if !ismatch(r"^A[0-9]{6}$", aname)
             warn("Not a valid A-name!")
             return

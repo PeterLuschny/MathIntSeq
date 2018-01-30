@@ -1,6 +1,7 @@
 local/*
 docs/*
-src/dev/*
+src/dev/
 docs/site/*
 docs/src/*
 docs/old/*
+.vscode/
