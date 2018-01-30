@@ -11,13 +11,13 @@ Executing SeqBuild.jl produces MathIntSeq.jl which is the
 ! modules of the same sequence).
 =#
 
-firsttime = true # false
+firsttime = false
 if firsttime
     Pkg.add("Nemo")
     Pkg.add("Memoize")
     Pkg.add("OffsetArrays")
     Pkg.add("HTTP")
-    Pkg.add("IterTool")
+    Pkg.add("IterTools")
 #   Pkg.add("Documenter")
 #   Pkg.add("Lint")
     Pkg.update()

@@ -158,7 +158,7 @@ function build_seq(docdefs)
     # Trouble with module Memoize
     # println(olm, "__precompile__(true)")
     ################################
-    println(olm,"Pkg.add(\"IterTools\")" )
+    #println(olm,"Pkg.add(\"IterTools\")" )
     println(olm, "module MathIntSeq")
     println(olm, "using Memoize, HTTP, Nemo, OffsetArrays, IterTools")
 

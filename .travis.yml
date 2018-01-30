@@ -17,7 +17,7 @@ script:
 - julia -e 'Pkg.add("Memoize")'
 - julia -e 'Pkg.add("HTTP")'
 - julia -e 'Pkg.add("OffsetArrays")'
-- julia -e 'Pkg.add("IterTool")'
+- julia -e 'Pkg.add("IterTools")'
 - julia -e 'Pkg.clone(pwd())'
 - julia -e 'Pkg.build("MathIntSeq")'
 - julia -e 'Pkg.test("MathIntSeq"; coverage=false)'

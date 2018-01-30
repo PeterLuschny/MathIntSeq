@@ -1,6 +1,5 @@
 # This file was part of JuliaMath/Combinatorics.jl (see GitHub)
-# and was modified here.
-# License is MIT.
+# and is modified here. License is MIT.
 
 module CombinationsIterator
 
