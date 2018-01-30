@@ -231,7 +231,6 @@ function demo()
 
     for n in 0:9, k in 0:9 println(n ↑ k) end
     for n in 0:9, k in 0:9 println(n ↓ k) end
-
 end
 
 doc"""

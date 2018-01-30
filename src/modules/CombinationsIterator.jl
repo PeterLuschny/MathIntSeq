@@ -1,5 +1,5 @@
-# This file was part of JuliaMath/Combinatorics.jl (see GitHub)
-# and is modified here. License is MIT.
+# This includes parts from JuliaMath/Combinatorics.jl (see GitHub)
+# in modified form. License is MIT: http://julialang.org/license
 
 module CombinationsIterator
 
@@ -55,8 +55,8 @@ function combinations(a, t::Integer)
 end
 
 """
-generate combinations of all orders, chaining of order iterators is eager,
-but sequence at each order is lazy
+Generate combinations of all orders, chaining of order iterators is eager,
+but sequence at each order is lazy.
 """
 combinations(a) = IterTools.chain([combinations(a, k) for k=1:length(a)]...)
 

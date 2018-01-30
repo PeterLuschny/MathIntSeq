@@ -19,7 +19,7 @@ docdir = joinpath(pkgdir, "docs")
 docsrcdir = joinpath(docdir, "src")
 tstdir = joinpath(pkgdir, "test")
 
-exclude = ["OLMS.jl", "SeqTests.jl", "NewBernoulli.jl"]
+exclude = ["OLMS.jl", "SeqTests.jl"]
 
 function header(f)
     println(f, "# This file is part of OLMS (Open Library of Mathematical Sequences).")
@@ -158,7 +158,6 @@ function build_seq(docdefs)
     # Trouble with module Memoize
     # println(olm, "__precompile__(true)")
     ################################
-    #println(olm,"Pkg.add(\"IterTools\")" )
     println(olm, "module MathIntSeq")
     println(olm, "using Memoize, HTTP, Nemo, OffsetArrays, IterTools")
 

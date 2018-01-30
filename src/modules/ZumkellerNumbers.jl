@@ -23,7 +23,8 @@ function IsZumkeller(n::Int)
     for c in combinations(D)
         S == sum(c) && return true
     end
-false end
+    return false 
+end
 
 doc"""
 Return a list of length len of the first Zumkeller numbers.
