@@ -24,6 +24,8 @@ exclude = ["OLMS.jl", "SeqTests.jl"]
 function header(f)
     println(f, "# This file is part of OLMS (Open Library of Mathematical Sequences).")
     println(f, "# Copyright Peter Luschny. License is MIT.")
+    println(f, "# This file includes portions from Combinatorics.jl and Primes.jl")
+    println(f, "# in modified form. License is MIT, http://julialang.org/license")
     println(f)
     println(f, "# Version of: UTC ", Dates.format(now(), "yyyy-mm-dd HH:MM:SS"))
     println(f, "# ", Base.Random.uuid1())

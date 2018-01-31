@@ -5,6 +5,9 @@ module Derangements
 using Nemo
 export Derangement, Subfactorial, A000166, A000255, A105927
 
+doc"""
+Return the number of fixpoit free permutations of an n-set.
+"""
 function Derangement(n)
     prec = 250
     while prec < 10000
@@ -18,9 +21,18 @@ function Derangement(n)
     # throw(InexactError())
 end
 
+doc"""
+Return the number of fixpoit free permutations of an n-set.
+"""
 Subfactorial(n) = Derangement(n)
+doc"""
+Return the number of fixpoit free permutations of an n-set.
+"""
 A000166(n) = Derangement(n)
 
+doc"""
+Return the number of fixpoit free permutations of an n-set beginning with 2.
+"""
 function A000255(n)
     prec = 250
     while prec < 10000
@@ -35,6 +47,10 @@ function A000255(n)
     # throw(InexactError())
 end
 
+doc"""
+Return the number of derangements of a set of n + 2 elements such that the first
+two elements belong to distinct cycles. (I. Mezo)
+"""
 function A105927(n)
     prec = 250
     while prec < 10000
@@ -56,6 +72,16 @@ module DerangementsTest
 using Base.Test, SeqBase, SeqTests, Nemo, OEISUtils, Derangements
 
 function test()
+    @testset "Derangements" begin
+        @test Derangement(1) == 0
+        @test A000255(8) == 148329
+        @test A105927(6) == 5430
+
+        if oeis_isinstalled()
+            A = [A000166, A000255, A105927]
+            SeqTest(A, 'A')
+        end
+    end
 end
 
 function demo()
