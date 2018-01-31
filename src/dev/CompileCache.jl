@@ -14,6 +14,6 @@ using Andre, Clausen, BernoulliNumbers, BinaryQF, DedekindEta
 using Fibonacci, GaussFactorial, Hyper1F1, JacobiTheta, Kolakoski, Maxima
 using Partitions, Recursive2, BellNumbers, OrthoPolynomials
 using SwingingFactorial, SelfConvolutive, FigurativeNumbers, BinaryInteger
-using CombinationsIterator, ZumkellerNumbers, SubFactorial
+using CombinationsIterator, ZumkellerNumbers, Derangements
 
 end # module
